@@ -6,6 +6,7 @@
 
 </head>
 <body>
+
 <th:block th:insert="Header.html"></th:block>
 
      <div  class="container-fluid">
@@ -18,12 +19,12 @@
             
             <div class="card-body">
             
-            <form action="/department/add" method="post">
+            <form action="/department/update" method="post"  th:object="${deptModel}" >
             
                  <div class="row p-2">
                    <div class="col-2">Department Name</div>
                    <div class="col-6">
-                       <input type="text" name="dpt_name" class="form-control" placeholder="Enter name">
+                       <input type="text" th:field="*{dpt_name}" class="form-control" placeholder="Enter name">
                    </div>
                  </div>
                  
@@ -31,23 +32,25 @@
                  <div class="row p-2">
                    <div class="col-2">Department Head(HOD)</div>
                    <div class="col-6">
-                       <input type="text" name="dpt_head" class="form-control" placeholder="Enter Hod">
+                       <input type="text" th:field="*{dpt_head}" class="form-control" placeholder="Enter Hod">
                    </div>
                  </div>
                  
                  <div class="row p-2">
                    <div class="col-2">Department Phone</div>
                    <div class="col-6">
-                       <input type="text" name="dpt_phone" class="form-control" placeholder="Enter Phone">
+                       <input type="text" th:field="*{dpt_phone}" class="form-control" placeholder="Enter Phone">
                    </div>
                  </div>
                  
                  <div class="row p-2">
                    <div class="col-2"></div>
                    <div class="col-6">
-                       <input type="submit" value="Add" class="btn btn-success btn-lg" >
+                       <input type="submit" value="Update" class="btn btn-success btn-lg" >
                    </div>
                  </div>
+                 
+                 <input type="hidden" th:field="*{id}" >
                  
              </form>  
                  

@@ -64,5 +64,11 @@ public class UserController {
 		
 		return "LoginForm";
 	}
+	
+	@GetMapping("/logout")
+	public String logout() {
+		
+		return "LoginForm";
+	}
 
 }
