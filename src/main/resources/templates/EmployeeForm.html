@@ -24,7 +24,7 @@
 
 			<div class="card-body">
 			
-			<form action="/employee" method="post">
+			<form action="/employee/add" method="post" >
 
 				<div class="row m-2">
 					<div class="col-4">First Name</div>
@@ -104,7 +104,7 @@
 						   
 						     <option value="">Select</option>
 						     
-						     <option th:each="dept : ${deptList}" th:value="${dept.id}"> [[${dept.dpt_name}]] </option> 
+						     <option th:each="dept : ${dptList}" th:value="${dept.id}"> [[${dept.dpt_name}]] </option> 
 						     
 						   </select>
 					</div>
@@ -122,12 +122,12 @@
 				<div class="row m-2">
 					<div class="col-4">Projects</div>
 					<div class="col-6">
-						<input type="checkbox" name="project" value="project_1"> Project_1
-						<input type="checkbox" name="project" value="project_2"> Project_2
-						<input type="checkbox" name="project" value="project_3"> Project_3
-						<input type="checkbox" name="project" value="project_4"> Project_4
-						<input type="checkbox" name="project" value="project_5"> Project_5
-						<input type="checkbox" name="project" value="project_6"> Project_6
+						<input type="checkbox" name="projects" value="project_1"> Project_1
+						<input type="checkbox" name="projects" value="project_2"> Project_2
+						<input type="checkbox" name="projects" value="project_3"> Project_3
+						<input type="checkbox" name="projects" value="project_4"> Project_4
+						<input type="checkbox" name="projects" value="project_5"> Project_5
+						<input type="checkbox" name="projects" value="project_6"> Project_6
 					</div>
 				</div>
 				
