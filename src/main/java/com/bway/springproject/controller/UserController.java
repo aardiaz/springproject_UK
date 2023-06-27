@@ -1,5 +1,7 @@
 package com.bway.springproject.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,13 +28,17 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String postLogin(@ModelAttribute User user, Model model) {
+	public String postLogin(@ModelAttribute User user, Model model, HttpSession session) {
 		
 		user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
 		User usr = userService.login(user.getUsername(), user.getPassword());
 		
 		if(usr != null) {
-			model.addAttribute("user",usr);
+			
+			session.setAttribute("validuser", usr);
+			session.setMaxInactiveInterval(200);
+			
+			//model.addAttribute("user",usr);
 			return "Home";
 		}
 		
@@ -48,6 +54,13 @@ public class UserController {
 	
 	@PostMapping("/signup")
 	public String postSignup(@ModelAttribute User user, Model model) {
+		
+		if(user.getUsername().isBlank()) {
+			
+			model.addAttribute("error","user name is required");
+			return "SignupForm";
+		}
+		
 		
 		  //check user is already exist
 		User u = userService.isUserExist(user.getUsername());
@@ -66,9 +79,17 @@ public class UserController {
 	}
 	
 	@GetMapping("/logout")
-	public String logout() {
+	public String logout(HttpSession session) {
+		
+		session.invalidate();//session kill
 		
 		return "LoginForm";
+	}
+	
+	@GetMapping("/profile")
+	public String getProfile() {
+		
+		return "ProfileForm";
 	}
 
 }

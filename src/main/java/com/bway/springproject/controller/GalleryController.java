@@ -1,6 +1,7 @@
 package com.bway.springproject.controller;
 
-import java.io.File;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,12 @@ public class GalleryController {
 	private GalleryRepository  galleryRepo;
 	
 	@GetMapping("/gallery")
-	public String getGallery(Model model) {
+	public String getGallery(Model model, HttpSession session) {
+		
+		 if(session.getAttribute("validuser") == null) {
+			 
+			 return "LoginForm";
+		 }
 		
 		//String[]  imgNames = new File("src/main/resources/static/image").list();
 		model.addAttribute("imgPhotoList",galleryRepo.findAll());
